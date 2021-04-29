@@ -1,0 +1,58 @@
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <param name="plugin-icon">images/pluginIcon.png</param>
+        <param name="plugin-logo">images/pluginLogo.png</param>
+    </plugin-info>
+
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="i18n" location="plugin"/>
+    
+    <!-- add our web resources -->
+    <web-resource key="plugin-resources" name="plugin Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        
+        <resource type="download" name="plugin.css" location="/css/plugin.css"/>
+        <resource type="download" name="plugin.js" location="/js/plugin.js"/>
+        <resource type="download" name="images/" location="/images"/>
+
+        <context>plugin</context>
+    </web-resource>
+
+    <!-- New admin panel section and button -->
+    <web-section key="test1" name="test1" location="system.admin.top.navigation.bar">
+        <label key="New admin menu button"/>
+    </web-section>
+
+    <web-item key="test2" name="test2" section="test1" weight="10">
+        <label key="test2"/>
+        <styleClass>custom-css-class</styleClass>
+        <link linkId="test2">http://google.com</link>
+    </web-item>
+
+<!--    <web-panel key="test3" name="test3" location="atl.jira.view.issue.right.context">-->
+<!--        <label key="Custom Issue Panel"/>-->
+<!--        <resource name="view" type="velocity" location="button.vm"/>-->
+<!--    </web-panel>-->
+    <!---->
+
+    <servlet name="Plugin Servlet"
+             class="plugin.servlet.Servlet"
+             key="gantt">
+        <description key="gantt.desc">A servlet for plugin</description>
+        <url-pattern>/gantt</url-pattern>
+    </servlet>
+
+    <routing key="gantt-routing" path="/secure">
+        <route from="Servlet.jspa" to="/plugins/servlet/gantt"/>
+    </routing>
+
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>PluginServlet</servlet-name>-->
+<!--        <url-pattern>/gantt-servlet</url-pattern>-->
+<!--    </servlet-mapping>-->
+
+    
+</atlassian-plugin>

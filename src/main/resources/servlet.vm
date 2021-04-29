@@ -1,0 +1,9 @@
+<html>
+    <head>
+        <title>Gantt Servlet</title>
+    </head>
+    <body>
+        <div>hello</div>
+        <div>$myVar</div>
+    </body>
+</html>
